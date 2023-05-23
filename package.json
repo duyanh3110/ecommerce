@@ -8,11 +8,15 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Duy Nguyen <duyanh19962012@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
     "mongoose": "^7.1.0"
   },
   "devDependencies": {
