@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const connectString = `mongodb+srv://admin:FDkfSH1jJWyekSRx@ecommerce.tkwxauf.mongodb.net`;
+const connectString = ``;
 mongoose
   .connect(connectString, {
     maxPoolSize: 50,
