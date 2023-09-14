@@ -1,7 +1,4 @@
 @url_dev=http://localhost:3055/v1/api
-@api_key=0f7b6c60b8e08957baf47871f964598e8ba497350ac897dac3303577b6d2ce445b7748b158ab8c23c62770d5ca8fdf36ef45313ba9124210f2c61c1c23ffa879
-# Permission denied api key
-# @api_key=4d06e2e07fea9967b26f8176ff2849213f991fabf117352f426757ee14d5e4bb674fb88e03e19959ecef62c94b6406371b517f5662ebb26d7d88da79374b0e94
 
 ## Sign Up
 POST {{url_dev}}/shop/signup
