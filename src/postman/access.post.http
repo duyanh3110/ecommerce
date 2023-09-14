@@ -6,7 +6,7 @@ Content-Type: application/json
 x-api-key: {{api_key}}
 
 {
-    "name": "Shop TIPS",
-    "email": "shoptipjs@gmail.com",
+    "name": "Shop TIPS 2",
+    "email": "shoptipjs2@gmail.com",
     "password": "abc123"
 }
