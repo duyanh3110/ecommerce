@@ -17,6 +17,11 @@ const ShopRole = {
 };
 
 class AccessService {
+    static logout = async (keyStore) => {
+        const delKey = await KeyTokenService.removeKeyById(keyStore._id);
+        return delKey;
+    };
+
     /*
     1 - Check email in DB
     2 - Match password
