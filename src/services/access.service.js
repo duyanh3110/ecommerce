@@ -4,9 +4,13 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const shopModel = require("../models/shop.model");
 const KeyTokenService = require("./keyToken.service");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyJWT } = require("../auth/authUtils");
 const { getInfoData, generateKeys } = require("../utils");
-const { BadRequestError, AuthFailureError } = require("../core/error.response");
+const {
+    BadRequestError,
+    AuthFailureError,
+    ForbiddenError,
+} = require("../core/error.response");
 const { findByEmail } = require("./shop.service");
 
 const ShopRole = {
@@ -17,6 +21,63 @@ const ShopRole = {
 };
 
 class AccessService {
+    // Check token is already used
+    static handleRefreshToken = async (refreshToken) => {
+        const foundToken = await KeyTokenService.findByRefreshTokenUsed(
+            refreshToken,
+        );
+
+        if (foundToken) {
+            // decode user using token
+            const { userId, email } = await verifyJWT(
+                refreshToken,
+                foundToken.privateKey,
+            );
+            console.log("[1] ::: ", { userId, email });
+            // delete token
+            await KeyTokenService.deleteKeyById(userId);
+            throw new ForbiddenError("Something went wrong! Please re login");
+        }
+
+        const holderToken = await KeyTokenService.findByRefreshToken(
+            refreshToken,
+        );
+        if (!holderToken) throw new AuthFailureError("Shop not registered!");
+
+        // Verify token
+        const { userId, email } = await verifyJWT(
+            refreshToken,
+            holderToken.privateKey,
+        );
+        console.log("[2] ::: ", { userId, email });
+
+        // Check userId existed
+        const foundShop = await findByEmail({ email });
+        if (!foundShop) throw new AuthFailureError("Shop not registered!");
+
+        // Create new token
+        const tokens = await createTokenPair(
+            { userId, email },
+            holderToken.publicKey,
+            holderToken.privateKey,
+        );
+
+        // Update token
+        await holderToken.updateOne({
+            $set: {
+                refreshToken: tokens.refreshToken,
+            },
+            $addToSet: {
+                refreshTokensUsed: refreshToken,
+            },
+        });
+
+        return {
+            user: { userId, email },
+            tokens,
+        };
+    };
+
     static logout = async (keyStore) => {
         const delKey = await KeyTokenService.removeKeyById(keyStore._id);
         return delKey;
