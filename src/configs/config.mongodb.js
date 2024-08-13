@@ -37,31 +37,31 @@
 
 //level 2
 const dev = {
-    app: {
-        port: process.env.DEV_APP_PORT || 3000,
-    },
-    db: {
-        host: process.env.DEV_DB_HOST || "localhost",
-        port: process.env.DEV_DB_PORT || 27017,
-        name: process.env.DEV_DB_NAME || "shopDEV",
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        url: process.env.DB_URL,
-    },
+  app: {
+    port: process.env.DEV_APP_PORT || 3000,
+  },
+  db: {
+    host: process.env.DEV_DB_HOST || "localhost",
+    port: process.env.DEV_DB_PORT || 27017,
+    name: process.env.DEV_DB_NAME || "shopDEV",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    url: process.env.DB_URL,
+  },
 };
 
 const prod = {
-    app: {
-        port: process.env.PROD_APP_PORT || 3000,
-    },
-    db: {
-        host: process.env.PROD_DB_HOST || "localhost",
-        port: process.env.PROD_DB_PORT || 27017,
-        name: process.env.PROD_DB_NAME || "shopPRO",
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        url: process.env.DB_URL,
-    },
+  app: {
+    port: process.env.PROD_APP_PORT || 3000,
+  },
+  db: {
+    host: process.env.PROD_DB_HOST || "localhost",
+    port: process.env.PROD_DB_PORT || 27017,
+    name: process.env.PROD_DB_NAME || "shopPRO",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    url: process.env.DB_URL,
+  },
 };
 
 const config = { dev, prod };

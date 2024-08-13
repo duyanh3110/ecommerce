@@ -39,7 +39,7 @@ var shopSchema = new Schema(
   {
     timestamps: true,
     collection: COLLECTION_NAME,
-  }
+  },
 );
 
 //Export the model
