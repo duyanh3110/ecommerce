@@ -8,37 +8,37 @@ const mongoose = require("mongoose");
 // const connectString = `mongodb://${host}:${port}/${name}`;
 
 const {
-  db: { host, port, name },
+	db: { host, port, name },
 } = require("../configs/config.mongodb");
 const connectString = `mongodb://${host}:${port}/${name}`;
 const { countConnect } = require("../helpers/check.connect");
 
 console.log(`connectString: ${connectString}`);
 class Database {
-  constructor() {
-    this.connect();
-  }
+	constructor() {
+		this.connect();
+	}
 
-  connect(type = "mongodb") {
-    // Set when env = dev
-    mongoose.set("debug", true);
-    mongoose.set("debug", { color: true });
+	connect(type = "mongodb") {
+		// Set when env = dev
+		mongoose.set("debug", true);
+		mongoose.set("debug", { color: true });
 
-    mongoose
-      .connect(connectString)
-      .then((_) => {
-        console.log(`Connected Mongodb Success PRO`, countConnect());
-      })
-      .catch((err) => console.log("Error connecting"));
-  }
+		mongoose
+			.connect(connectString)
+			.then((_) => {
+				console.log(`Connected Mongodb Success PRO`, countConnect());
+			})
+			.catch((err) => console.log("Error connecting"));
+	}
 
-  static getInstance() {
-    if (!Database.instance) {
-      Database.instance = new Database();
-    }
+	static getInstance() {
+		if (!Database.instance) {
+			Database.instance = new Database();
+		}
 
-    return Database.instance;
-  }
+		return Database.instance;
+	}
 }
 
 const instanceMongodb = Database.getInstance();

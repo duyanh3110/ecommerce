@@ -5,8 +5,8 @@ const { authentication } = require("../../auth/authUtils");
 const router = express.Router();
 
 router.get(
-    "/search/:keySearch",
-    asyncHandler(productController.getListSearchProduct),
+	"/search/:keySearch",
+	asyncHandler(productController.getListSearchProduct)
 );
 
 // Authentication
@@ -14,18 +14,18 @@ router.use(authentication);
 
 router.post("/", asyncHandler(productController.createProduct));
 router.post(
-    "/publish/:id",
-    asyncHandler(productController.publishProductByShop),
+	"/publish/:id",
+	asyncHandler(productController.publishProductByShop)
 );
 router.post(
-    "/unpublish/:id",
-    asyncHandler(productController.unpublishProductByShop),
+	"/unpublish/:id",
+	asyncHandler(productController.unpublishProductByShop)
 );
 
 router.get("/drafts/all", asyncHandler(productController.getAllDraftsForShop));
 router.get(
-    "/published/all",
-    asyncHandler(productController.getAllPublishedForShop),
+	"/published/all",
+	asyncHandler(productController.getAllPublishedForShop)
 );
 
 module.exports = router;

@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 
 const connectString = ``;
 mongoose
-  .connect(connectString, {
-    maxPoolSize: 50,
-  })
-  .then((_) => console.log("Connected Mongodb Success"))
-  .catch((err) => console.log("Error connecting"));
+	.connect(connectString, {
+		maxPoolSize: 50,
+	})
+	.then((_) => console.log("Connected Mongodb Success"))
+	.catch((err) => console.log("Error connecting"));
 
 // Set when env = dev
 mongoose.set("debug", true);
