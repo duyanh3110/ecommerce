@@ -14,7 +14,18 @@ const generateKeys = () => {
 	return { privateKey, publicKey };
 };
 
+// ['a', 'b'] => {a: 1, b: 1}
+const getSelectData = (select = []) => {
+	return Object.fromEntries(select.map((el) => [el, 1]));
+};
+
+const getUnselectData = (select = []) => {
+	return Object.fromEntries(select.map((el) => [el, 0]));
+};
+
 module.exports = {
 	getInfoData,
 	generateKeys,
+	getSelectData,
+	getUnselectData,
 };

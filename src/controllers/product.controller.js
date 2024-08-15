@@ -6,7 +6,7 @@ const { SuccessResponse } = require("../core/success.response");
 class ProductController {
 	createProduct = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Create new Product successfully",
+			message: "createProduct successfully",
 			metadata: await ProductService.createProduct(
 				req.body.product_type,
 				{
@@ -19,7 +19,7 @@ class ProductController {
 
 	publishProductByShop = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Publish Product successfully",
+			message: "publishProductByShop successfully",
 			metadata: await ProductService.publishProductByShop({
 				product_id: req.params.id,
 				product_shop: req.user.userId,
@@ -29,7 +29,7 @@ class ProductController {
 
 	unpublishProductByShop = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Unpublish Product successfully",
+			message: "unpublishProductByShop successfully",
 			metadata: await ProductService.unpublishProductByShop({
 				product_id: req.params.id,
 				product_shop: req.user.userId,
@@ -45,7 +45,7 @@ class ProductController {
 	 */
 	getAllDraftsForShop = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Get list draft successfully",
+			message: "getAllDraftsForShop successfully",
 			metadata: await ProductService.findAllDraftsForShop({
 				product_shop: req.user.userId,
 			}),
@@ -60,7 +60,7 @@ class ProductController {
 	 */
 	getAllPublishedForShop = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Get list published successfully",
+			message: "getAllPublishedForShop successfully",
 			metadata: await ProductService.findAllPublishedForShop({
 				product_shop: req.user.userId,
 			}),
@@ -69,8 +69,24 @@ class ProductController {
 
 	getListSearchProduct = async (req, res, next) => {
 		new SuccessResponse({
-			message: "Get list search product successfully",
+			message: "getListSearchProduct successfully",
 			metadata: await ProductService.searchProducts(req.params),
+		}).send(res);
+	};
+
+	findAllProducts = async (req, res, next) => {
+		new SuccessResponse({
+			message: "findAllProducts successfully",
+			metadata: await ProductService.findAllProducts(req.query),
+		}).send(res);
+	};
+
+	findProduct = async (req, res, next) => {
+		new SuccessResponse({
+			message: "findProduct successfully",
+			metadata: await ProductService.findProduct({
+				product_id: req.params.product_id,
+			}),
 		}).send(res);
 	};
 }
