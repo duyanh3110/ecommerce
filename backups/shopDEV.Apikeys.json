@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "6698cfe1bcaf0cd67d48d7eb"
+  },
+  "key": "e9b253148e58beb6c1669731c6e852663a3248498dbbf13989834f16716e98996d3ad495854111ac9a248490401533be1640b77af4f66743328f32e69e54a9cd",
+  "status": true,
+  "permissions": [
+    "0000"
+  ],
+  "createdAt": {
+    "$date": "2024-07-18T08:18:41.695Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-18T08:18:41.695Z"
+  },
+  "__v": 0
+}]

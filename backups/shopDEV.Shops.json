@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "name": "Shop TIPS",
+  "email": "shoptipjs@gmail.com",
+  "password": "$2b$10$4yzXXCS5otLLS7gvlEasFOo3eGeWbZEboucSDe4uXlbGJScPKV6wW",
+  "status": "inactive",
+  "verify": false,
+  "roles": [
+    "SHOP"
+  ],
+  "createdAt": {
+    "$date": "2024-08-08T12:32:22.326Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-08T12:32:22.326Z"
+  },
+  "__v": 0
+}]

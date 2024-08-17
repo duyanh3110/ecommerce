@@ -1,0 +1,93 @@
+[{
+  "_id": {
+    "$oid": "66bca175c535f86940603316"
+  },
+  "product_name": "Brown Wood Table",
+  "product_thumb": "product_thumb",
+  "product_description": "Table for dinning room",
+  "product_price": 80,
+  "product_quantity": 10,
+  "product_type": "Furniture",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "product_attributes": {
+    "brand": "Ikea",
+    "size": "M",
+    "material": "Wood"
+  },
+  "product_ratingAverage": 4.5,
+  "product_variations": [],
+  "isDraft": false,
+  "isPublished": true,
+  "createdAt": {
+    "$date": "2024-08-14T12:22:13.789Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-15T11:14:58.131Z"
+  },
+  "product_slug": "brown-wood-table",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bca6da6cb53969dfe6a2b7"
+  },
+  "product_name": "Black Jean",
+  "product_thumb": "product_thumb",
+  "product_description": "Fashion for kid",
+  "product_price": 190,
+  "product_quantity": 100,
+  "product_type": "Clothing",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "product_attributes": {
+    "brand": "Mango",
+    "material": "Jean",
+    "size": "XL"
+  },
+  "product_ratingAverage": 4.5,
+  "product_variations": [],
+  "isDraft": false,
+  "isPublished": true,
+  "createdAt": {
+    "$date": "2024-08-14T12:45:14.129Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-15T18:07:42.524Z"
+  },
+  "product_slug": "black-jean",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bf39117d0c10253ac3fe09"
+  },
+  "product_name": "White Jacket",
+  "product_thumb": "product_thumb",
+  "product_description": "Fashion for men",
+  "product_price": 200,
+  "product_quantity": 10,
+  "product_type": "Clothing",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "product_attributes": {
+    "brand": "H&M",
+    "size": "L",
+    "material": "Canvas"
+  },
+  "product_ratingAverage": 4.5,
+  "product_variations": [],
+  "isDraft": true,
+  "isPublished": false,
+  "createdAt": {
+    "$date": "2024-08-16T11:33:37.917Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-16T11:33:37.917Z"
+  },
+  "product_slug": "white-jacket",
+  "__v": 0
+}]

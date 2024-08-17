@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "66bca6da6cb53969dfe6a2b7"
+  },
+  "brand": "Mango",
+  "size": "XL",
+  "material": "Jean",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "createdAt": {
+    "$date": "2024-08-14T12:45:14.120Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-15T18:07:42.521Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bf38839fbba12c8d069527"
+  },
+  "brand": "H&M",
+  "size": "L",
+  "material": "Canvas",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "createdAt": {
+    "$date": "2024-08-16T11:31:15.746Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-16T11:31:15.746Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bf38de7d0c10253ac3fe01"
+  },
+  "brand": "H&M",
+  "size": "L",
+  "material": "Canvas",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "createdAt": {
+    "$date": "2024-08-16T11:32:46.529Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-16T11:32:46.529Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66bf39117d0c10253ac3fe09"
+  },
+  "brand": "H&M",
+  "size": "L",
+  "material": "Canvas",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "createdAt": {
+    "$date": "2024-08-16T11:33:37.914Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-16T11:33:37.914Z"
+  },
+  "__v": 0
+}]

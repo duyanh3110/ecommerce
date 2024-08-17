@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "66bca175c535f86940603316"
+  },
+  "brand": "Ikea",
+  "size": "M",
+  "material": "Wood",
+  "product_shop": {
+    "$oid": "66b4bad6a5751c3cdb1df72c"
+  },
+  "createdAt": {
+    "$date": "2024-08-14T12:22:13.782Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-14T12:22:13.782Z"
+  },
+  "__v": 0
+}]
