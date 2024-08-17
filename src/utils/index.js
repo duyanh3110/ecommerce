@@ -2,6 +2,7 @@
 
 const _ = require("lodash");
 const crypto = require("crypto");
+const { Types } = require("mongoose");
 
 const getInfoData = ({ fields = [], object = {} }) => {
 	return _.pick(object, fields);
@@ -49,6 +50,8 @@ const updateNestedObjectParser = (obj) => {
 	return final;
 };
 
+const convertToObjectId = (id) => new Types.ObjectId(id);
+
 module.exports = {
 	getInfoData,
 	generateKeys,
@@ -56,4 +59,5 @@ module.exports = {
 	getUnselectData,
 	removeUndefinedObject,
 	updateNestedObjectParser,
+	convertToObjectId,
 };
