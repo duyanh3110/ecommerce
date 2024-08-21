@@ -4,6 +4,7 @@ const { BadRequestError, NotFoundError } = require("../core/error.response");
 const discountModel = require("../models/discount.model");
 const {
 	findAllDiscountCodesUnselected,
+	checkDiscountExists,
 } = require("../models/repositories/discount.repo");
 const { findAllProducts } = require("../models/repositories/product.repo");
 const { convertToObjectId } = require("../utils");
@@ -35,6 +36,8 @@ class DiscountService {
 			max_value,
 			max_uses,
 			uses_count,
+			users_used,
+			max_uses_per_user,
 		} = payload;
 
 		if (
@@ -48,12 +51,13 @@ class DiscountService {
 			throw new BadRequestError("Start date must be before end date!");
 		}
 
-		const foundDiscount = await discountModel
-			.findOne({
+		const foundDiscount = await checkDiscountExists({
+			model: discountModel,
+			filter: {
 				discount_code: code,
 				discount_shopId: convertToObjectId(shopId),
-			})
-			.lean();
+			},
+		});
 
 		if (foundDiscount && foundDiscount.discount_is_active) {
 			throw new BadRequestError("Discount code already exists!");
@@ -66,7 +70,7 @@ class DiscountService {
 			discount_code: code,
 			discount_value: value,
 			discount_min_order_value: min_order_value || 0,
-			// discount_max_value: max_value,
+			discount_max_value: max_value,
 			discount_start_date: new Date(start_date),
 			discount_end_date: new Date(end_date),
 			discount_max_uses: max_uses,
@@ -147,6 +151,121 @@ class DiscountService {
 		});
 
 		return discounts;
+	}
+
+	static async getDiscountAmount({ codeId, userId, shopId, products }) {
+		const foundDiscount = await checkDiscountExists({
+			model: discountModel,
+			filter: {
+				discount_code: codeId,
+				discount_shopId: convertToObjectId(shopId),
+			},
+		});
+
+		if (!foundDiscount) {
+			throw new NotFoundError(`Discount does not exist`);
+		}
+
+		const {
+			discount_is_active,
+			discount_max_uses,
+			discount_start_date,
+			discount_end_date,
+			discount_min_order_value,
+			discount_max_uses_per_user,
+			discount_users_used,
+			discount_value,
+			discount_type,
+		} = foundDiscount;
+
+		if (!discount_is_active) {
+			throw new NotFoundError(`Discount expired`);
+		}
+
+		if (!discount_max_uses) {
+			throw new NotFoundError(`Discount are out`);
+		}
+
+		if (
+			new Date() < new Date(discount_start_date) ||
+			new Date() > new Date(discount_end_date)
+		) {
+			throw new NotFoundError(`Discount expired`);
+		}
+
+		let totalOrder = 0;
+		if (discount_min_order_value > 0) {
+			totalOrder = products.reduce((acc, product) => {
+				return acc + product.quantity * product.price;
+			}, 0);
+
+			if (totalOrder < discount_min_order_value) {
+				throw new NotFoundError(
+					`Discount requires a minium order value of ${discount_min_order_value}`
+				);
+			}
+
+			if (discount_max_uses_per_user > 0) {
+				const userUserDiscount = discount_users_used.find(
+					(user) => user.id === userId
+				);
+
+				if (userUserDiscount) {
+					throw new NotFoundError(
+						`Discount should be used only one time`
+					);
+				}
+			}
+
+			const amount =
+				discount_type === "fixed_amount"
+					? discount_value
+					: totalOrder * (discount_value / 100);
+
+			return {
+				totalOrder,
+				discount: amount,
+				totalPrice: totalOrder - amount,
+			};
+		}
+	}
+
+	static async deleteDiscountCode({ shopId, codeId }) {
+		const deleted = await discountModel.findOneAndDelete({
+			discount_code: codeId,
+			discount_shopId: convertToObjectId(shopId),
+		});
+
+		return deleted;
+	}
+
+	static async cancelDiscountCode({ codeId, shopId, userId }) {
+		const foundDiscount = checkDiscountExists({
+			model: discountModel,
+			filter: {
+				discount_code: codeId,
+				discount_shopId: convertToObjectId(shopId),
+			},
+		});
+
+		if (!foundDiscount) {
+			throw new NotFoundError(`Discount does not exist`);
+		}
+
+		const result = await discountModel.findByIdAndUpdate(
+			foundDiscount._id,
+			{
+				$pull: {
+					discount_users_used: userId,
+				},
+				$inc: {
+					discount_max_uses: 1,
+					discount_uses_count: -1,
+				},
+			}
+		);
+
+		return result;
 	}
 }
 

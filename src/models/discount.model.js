@@ -21,7 +21,11 @@ const discountSchema = new Schema(
 			default: "fixed_amount",
 		},
 		discount_value: {
-			type: String,
+			type: Number,
+			required: true,
+		},
+		discount_max_value: {
+			type: Number,
 			required: true,
 		},
 		discount_code: {
@@ -65,7 +69,7 @@ const discountSchema = new Schema(
 			default: true,
 		},
 		discount_applies_to: {
-			type: Boolean,
+			type: String,
 			required: true,
 			enum: ["all", "specific"],
 		},
