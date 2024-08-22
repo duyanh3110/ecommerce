@@ -1,6 +1,10 @@
 "use strict";
 
-const { getSelectData, getUnselectData } = require("../../utils");
+const {
+	getSelectData,
+	getUnselectData,
+	convertToObjectId,
+} = require("../../utils");
 const {
 	product,
 	electronic,
@@ -100,6 +104,10 @@ const unpublishProductByShop = async ({ product_shop, product_id }) => {
 	return modifiedCount;
 };
 
+const getProductById = async (productId) => {
+	return await product.findOne({ _id: convertToObjectId(productId) }).lean();
+};
+
 module.exports = {
 	findAllDraftsForShop,
 	publishProductByShop,
@@ -109,4 +117,5 @@ module.exports = {
 	findAllProducts,
 	findProduct,
 	updateProductById,
+	getProductById,
 };
